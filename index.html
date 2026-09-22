@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAJAB-KING YT - App Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #0d0f18;
+            --bg-container: #121421;
+            --bg-card: #191c2e;
+            --bg-header: linear-gradient(180deg, rgba(26,29,46,1) 0%, rgba(18,20,33,1) 100%);
+            --border-color: #232740;
+            --text-main: #ffffff;
+            --text-sub: #8b8ea8;
+            --nav-bg: #141625;
+            --btn-bg: #1a1d2e;
+        }
+
+        /* Light Mode Variables */
+        body.light-mode {
+            --bg-body: #e0e5ec;
+            --bg-container: #ffffff;
+            --bg-card: #f0f3f8;
+            --bg-header: linear-gradient(180deg, #ffffff 0%, #f0f3f8 100%);
+            --border-color: #d1d5db;
+            --text-main: #111827;
+            --text-sub: #4b5563;
+            --nav-bg: #ffffff;
+            --btn-bg: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg-container);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-bottom: 80px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            overflow-x: hidden;
+        }
+
+        /* Top Header */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--bg-header);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-glow {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #252840;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+            border: 2px solid #00ff88;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .logo-glow:active {
+            transform: scale(0.92);
+        }
+
+        .logo-glow img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-info h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        .user-info p {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .icon-btn:active {
+            transform: scale(0.92);
+        }
+
+        .badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: #ff3b30;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-container);
+        }
+
+        /* Section Title */
+        .section-title {
+            padding: 20px 20px 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* App Grid */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 10px 20px;
+        }
+
+        .app-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 12px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .app-card:first-child {
+            border: 1px solid #7000ff;
+            box-shadow: 0 0 15px rgba(112, 0, 255, 0.25);
+        }
+
+        .app-card:active {
+            transform: scale(0.95);
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-bottom: 8px;
+            background: #252840;
+        }
+
+        .app-name {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .app-rating {
+            font-size: 11px;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .app-rating i {
+            color: #ffb800;
+        }
+
+        .download-panel {
+            font-size: 10px;
+            color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 2px 6px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+            width: fit-content;
+        }
+
+        /* General Overlay & Panels */
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .notification-panel {
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
+            background: #161828;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            border-top: 1px solid #7000ff;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 0 -10px 30px rgba(112, 0, 255, 0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        /* Hacker / Termux Modal Styling */
+        .termux-panel {
+            border-top: 1px solid #00ff88;
+            box-shadow: 0 -10px 30px rgba(0, 255, 136, 0.25);
+            background: #0d1117;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* Animated Fancy Multi-color Glow Keyframes */
+        @keyframes rainbowGlow {
+            0% { border-color: #ff0055; box-shadow: 0 0 15px #ff0055; }
+            25% { border-color: #00ff88; box-shadow: 0 0 15px #00ff88; }
+            50% { border-color: #00e5ff; box-shadow: 0 0 15px #00e5ff; }
+            75% { border-color: #9d00ff; box-shadow: 0 0 15px #9d00ff; }
+            100% { border-color: #ff0055; box-shadow: 0 0 15px #ff0055; }
+        }
+
+        /* Full Image Banner Container for Termux Modal */
+        .termux-full-banner {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .full-banner-img {
+            width: 100%;
+            height: auto;
+            max-height: 220px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 2px solid #00ff88;
+            animation: rainbowGlow 3s infinite linear;
+            margin-bottom: 10px;
+        }
+
+        .fancy-title {
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(90deg, #ff0055, #00ff88, #00e5ff, #9d00ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .noti-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #232740;
+            padding-bottom: 10px;
+        }
+
+        .termux-header {
+            border-bottom-color: #00ff88;
+        }
+
+        .noti-header h3 {
+            font-size: 18px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hacker-title {
+            color: #00ff88 !important;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #8b8ea8;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Command Box Item */
+        .command-card {
+            background: #161b22;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .command-card label {
+            font-size: 11px;
+            color: #00ff88;
+            font-family: monospace;
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .command-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #090d13;
+            border: 1px solid #1f2937;
+            padding: 8px 12px;
+            border-radius: 8px;
+            gap: 10px;
+        }
+
+        .command-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: #e6edf3;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: #238636;
+            color: #ffffff;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Notification Card Standard */
+        .noti-card {
+            background: #1c1f36;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #292d4d;
+        }
+
+        .noti-thumb {
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 1px solid #32375c;
+        }
+
+        .noti-info h4 {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .download-file-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #7000ff 0%, #9e00ff 100%);
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+            box-shadow: 0 4px 12px rgba(112, 0, 255, 0.4);
+        }
+
+        .download-file-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 480px;
+            height: 70px;
+            background: var(--nav-bg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 11px;
+            padding: 8px 16px;
+            border-radius: 14px;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+
+        .nav-item.active {
+            color: var(--text-main);
+            background: rgba(112, 0, 255, 0.2);
+        }
+
+        .nav-item.active i {
+            color: #8a2be2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <div class="top-bar">
+            <div class="user-profile">
+                <div class="logo-glow" onclick="toggleTermuxModal()" title="Click to open Hacker Termux Commands">
+                    <img src="https://i.postimg.cc/tC8xtFkL/1789643546627.png" alt="RAJAB-KING YT Logo">
+                </div>
+                <div class="user-info">
+                    <h2>RAJAB-KING YT</h2>
+                    <p>Total Apps: 3</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <!-- Mode Switcher Toggle Button -->
+                <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-btn" onclick="toggleNotifications()">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notiBadge">4</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <div class="section-title">
+            <i class="fa-solid fa-mobile-screen"></i> All Apps
+        </div>
+
+        <!-- App Grid -->
+        <div class="app-grid">
+
+            <!-- APP CARD 1: SKETCHWARE PRO -->
+            <div class="app-card" onclick="downloadApp(this, 'https://www.mediafire.com/file/bnk1zomfmaytcs1/Sketchware+Pro_v7.0.0-SNAPSHOT-f28d22f-minApi26.apk/file')">
+                <img src="https://raw.githubusercontent.com/Sketchware-Pro/Sketchware-Pro/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" class="app-icon" alt="Sketchware Pro">
+                <div class="app-name">Sketchware Pro</div>
+                <div class="app-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+                <div class="download-panel">
+                    <i class="fa-solid fa-download"></i> <span class="count">0</span>
+                </div>
+            </div>
+
+            <!-- APP CARD 2: TERMUX -->
+            <div class="app-card" onclick="downloadApp(this, 'YOUR_APK_LINK_HERE.apk')">
+                <img src="https://raw.githubusercontent.com/termux/termux-app/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" class="app-icon" alt="Termux">
+                <div class="app-name">Termux</div>
+                <div class="app-rating"><i class="fa-solid fa-star"></i> 5.0</div>
+                <div class="download-panel">
+                    <i class="fa-solid fa-download"></i> <span class="count">0</span>
+                </div>
+            </div>
+
+            <!-- APP CARD 3: MT MANAGER -->
+            <div class="app-card" onclick="downloadApp(this, 'YOUR_APK_LINK_HERE.apk')">
+                <img src="https://cdn-icons-png.flaticon.com/512/3665/3665923.png" class="app-icon" alt="MT Manager">
+                <div class="app-name">MT Manager</div>
+                <div class="app-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+                <div class="download-panel">
+                    <i class="fa-solid fa-download"></i> <span class="count">0</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Termux Commands Hacker Modal -->
+        <div class="notification-overlay" id="termuxOverlay">
+            <div class="notification-panel termux-panel">
+                <div class="noti-header termux-header">
+                    <h3 class="hacker-title">☠️ HACKER TERMUX COMMAND ☠️</h3>
+                    <button class="close-btn" onclick="toggleTermuxModal()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <!-- FULL BANNER IMAGE WITH MULTI-COLOR GLOW -->
+                <div class="termux-full-banner">
+                    <img src="https://i.postimg.cc/pTszWnKZ/1789971985456.png" class="full-banner-img" alt="Rajab King Full DP">
+                    <div class="fancy-title">★ RAJAB-KING YT HACKER PANEL★</div>
+                </div>
+
+                <!-- COMMAND 1 -->
+                <div class="command-card">
+                    <label>STEP 01: SYSTEM UPDATE</label>
+                    <div class="command-box">
+                        <span class="command-text" id="cmd1">pkg update && pkg upgrade -y</span>
+                        <button class="copy-btn" onclick="copyCommand('cmd1', this)">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMMAND 2 -->
+                <div class="command-card">
+                    <label>STEP 02: INSTALL DEPENDENCIES</label>
+                    <div class="command-box">
+                        <span class="command-text" id="cmd2">pkg install git python python -y</span>
+                        <button class="copy-btn" onclick="copyCommand('cmd2', this)">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMMAND 3 -->
+                <div class="command-card">
+                    <label>STEP 03: CLONE REPOSITORY</label>
+                    <div class="command-box">
+                        <span class="command-text" id="cmd3">git clone https://github.com/spyboy-productions/r4ven.git</span>
+                        <button class="copy-btn" onclick="copyCommand('cmd3', this)">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMMAND 4 -->
+                <div class="command-card">
+                    <label>STEP 04: INSTALL REQUIREMENTS</label>
+                    <div class="command-box">
+                        <span class="command-text" id="cmd4">pip3 install -r requirements.txt</span>
+                        <button class="copy-btn" onclick="copyCommand('cmd4', this)">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMMAND 5 -->
+                <div class="command-card">
+                    <label>STEP 05: RUN SCRIPT</label>
+                    <div class="command-box">
+                        <span class="command-text" id="cmd5">python3 r4ven.py</span>
+                        <button class="copy-btn" onclick="copyCommand('cmd5', this)">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Notification Panel / Bell Modal -->
+        <div class="notification-overlay" id="notificationOverlay">
+            <div class="notification-panel">
+                <div class="noti-header">
+                    <h3><i class="fa-solid fa-bell" style="color: #8a2be2;"></i> Latest Updates</h3>
+                    <button class="close-btn" onclick="toggleNotifications()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <!-- NEWLY ADDED ITEM: SIM DATA ZIP -->
+                <div class="noti-card">
+                    <img src="https://i.postimg.cc/3x5yv1LW/upscalemedia-transformed.png" class="noti-thumb" alt="SIM Data Thumbnail">
+                    <div class="noti-info">
+                        <h4>🤯 SIM DATA 🗃️ Zip File</h4>
+                        <a href="https://www.mediafire.com/file/spdwdbrjhidszgz/🤯+SIM+DATA+🗃️.zip/file" target="_blank" class="download-file-btn">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Download SIM Data ZIP
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ITEM 1 -->
+                <div class="noti-card">
+                    <img src="https://i.postimg.cc/cLN42bw3/1789872362831.png" class="noti-thumb" alt="Thumbnail 1">
+                    <div class="noti-info">
+                        <h4>Index HTML Source File</h4>
+                        <a href="https://www.mediafire.com/file/wsdurfaerwe32v9/index.html/file" target="_blank" class="download-file-btn">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Download Index File
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ITEM 2 -->
+                <div class="noti-card">
+                    <img src="https://i.postimg.cc/pXS1Lwqx/1789824152845.png" class="noti-thumb" alt="Thumbnail 2">
+                    <div class="noti-info">
+                        <h4>Sketchware Pro v7.0.0 APK</h4>
+                        <a href="https://www.mediafire.com/file/c1j5xy6j860699j/Sketchware+Pro_v7.0.0-SNAPSHOT-f28d22f-minApi26.apk/file" target="_blank" class="download-file-btn">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Download APK File
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ITEM 3 -->
+                <div class="noti-card">
+                    <img src="https://i.postimg.cc/W3MPG2Yf/1789706074896.png" class="noti-thumb" alt="Thumbnail 3">
+                    <div class="noti-info">
+                        <h4>Latest Project Update</h4>
+                        <a href="https://i.postimg.cc/W3MPG2Yf/1789706074896.png" target="_blank" class="download-file-btn">
+                            <i class="fa-solid fa-eye"></i> View Full Image
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <div class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="fa-solid fa-border-all"></i>
+                <span>Apps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-gamepad"></i>
+                <span>Games</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-trophy"></i>
+                <span>Top Apps</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Books</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function downloadApp(element, url) {
+            let countSpan = element.querySelector('.count');
+            let currentCount = parseInt(countSpan.innerText);
+            countSpan.innerText = currentCount + 1;
+
+            if(url && url !== 'YOUR_APK_LINK_HERE.apk') {
+                window.open(url, '_blank');
+            } else {
+                alert("Kripya pehle is app ka sahi download link HTML code me lagayein!");
+            }
+        }
+
+        function toggleNotifications() {
+            const overlay = document.getElementById('notificationOverlay');
+            const badge = document.getElementById('notiBadge');
+            
+            if (overlay.style.display === 'flex') {
+                overlay.style.display = 'none';
+            } else {
+                overlay.style.display = 'flex';
+                badge.innerText = '0';
+            }
+        }
+
+        function toggleTermuxModal() {
+            const overlay = document.getElementById('termuxOverlay');
+            if (overlay.style.display === 'flex') {
+                overlay.style.display = 'none';
+            } else {
+                overlay.style.display = 'flex';
+            }
+        }
+
+        /* Light / Dark Mode Toggle Function */
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const themeBtn = document.getElementById('themeBtn');
+            if (document.body.classList.contains('light-mode')) {
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        }
+
+        function copyCommand(elementId, btn) {
+            const commandText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(commandText).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+                btn.style.background = '#00ff88';
+                btn.style.color = '#000000';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '#238636';
+                    btn.style.color = '#ffffff';
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+  </html>
+                      
