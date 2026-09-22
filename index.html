@@ -61,12 +61,12 @@
             overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Top Header Fixed Layout */
         .top-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
+            padding: 12px 16px;
             background: var(--bg-header);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
@@ -77,61 +77,60 @@
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-grow: 1;
         }
 
         .logo-glow {
-            position: relative;
-            width: 48px;
-            height: 48px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             background: #252840;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
             border: 2px solid #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+            flex-shrink: 0;
+            overflow: hidden;
             cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .logo-glow:active {
-            transform: scale(0.92);
         }
 
         .logo-glow img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
+            border-radius: 50%;
         }
 
         .user-info h2 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text-main);
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .user-info p {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-sub);
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            flex-shrink: 0;
         }
 
         .icon-btn {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: var(--btn-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -151,8 +150,8 @@
             color: white;
             font-size: 10px;
             font-weight: bold;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -160,14 +159,33 @@
             border: 2px solid var(--bg-container);
         }
 
-        /* Section Title */
-        .section-title {
-            padding: 20px 20px 10px;
+        /* Section Header */
+        .section-header {
+            padding: 16px 20px 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 20px;
+            justify-content: space-between;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
             font-weight: 700;
+        }
+
+        .setting-sub-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
         }
 
         /* App Grid */
@@ -205,8 +223,8 @@
         }
 
         .app-icon {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 16px;
             object-fit: cover;
             margin-bottom: 8px;
@@ -267,22 +285,15 @@
         .notification-panel {
             width: 100%;
             max-width: 480px;
-            max-height: 85vh;
-            background: #161828;
-            border-top-left-radius: 24px;
-            border-top-right-radius: 24px;
-            border-top: 1px solid #7000ff;
-            padding: 20px;
+            max-height: 90vh;
+            background: #f4f5f9;
+            border-top-left-radius: 28px;
+            border-top-right-radius: 28px;
+            padding: 0 0 20px 0;
             overflow-y: auto;
-            box-shadow: 0 -10px 30px rgba(112, 0, 255, 0.3);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
             animation: slideUp 0.3s ease-out;
-        }
-
-        /* Hacker / Termux Modal Styling */
-        .termux-panel {
-            border-top: 1px solid #00ff88;
-            box-shadow: 0 -10px 30px rgba(0, 255, 136, 0.25);
-            background: #0d1117;
+            color: #1a1d2e;
         }
 
         @keyframes slideUp {
@@ -290,16 +301,241 @@
             to { transform: translateY(0); }
         }
 
-        /* Animated Fancy Multi-color Glow Keyframes */
-        @keyframes rainbowGlow {
-            0% { border-color: #ff0055; box-shadow: 0 0 15px #ff0055; }
-            25% { border-color: #00ff88; box-shadow: 0 0 15px #00ff88; }
-            50% { border-color: #00e5ff; box-shadow: 0 0 15px #00e5ff; }
-            75% { border-color: #9d00ff; box-shadow: 0 0 15px #9d00ff; }
-            100% { border-color: #ff0055; box-shadow: 0 0 15px #ff0055; }
+        /* Top Header Banner inside Modal with Custom Image Background */
+        .popup-banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url('https://i.postimg.cc/90FS7w8C/9b58b65f70f58790c98eb0fea3ee297f.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 35px 20px 25px;
+            text-align: center;
+            position: relative;
+            border-top-left-radius: 28px;
+            border-top-right-radius: 28px;
+            color: #ffffff;
+            margin-bottom: 20px;
         }
 
-        /* Full Image Banner Container for Termux Modal */
+        .popup-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            color: #ffffff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-icon-wrapper {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .banner-icon-wrapper i {
+            font-size: 28px;
+            color: #ffffff;
+        }
+
+        .banner-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .banner-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.8);
+        }
+
+        /* Light Link Cards Container */
+        .modal-links-container {
+            padding: 0 16px;
+        }
+
+        .image-style-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #1f2937;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+        }
+
+        .image-style-card:active {
+            transform: scale(0.98);
+        }
+
+        .card-left-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .card-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .yt-bg { background: #ffe6e6; color: #ff0000; }
+        .wa-bg { background: #e6f9ed; color: #25d366; }
+        .admin-bg { background: #fef3c7; color: #d97706; }
+
+        .card-text-box h4 {
+            font-size: 14px;
+            color: #111827;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .card-text-box p {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .card-arrow {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        /* Dedicated Admin Login Modal Styling (Matching User Image 2) */
+        .admin-modal-panel {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 25px 20px;
+            text-align: center;
+            margin: auto;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: popIn 0.3s ease-out;
+            color: #1a1d2e;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .admin-icon-circle {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: #ffffff;
+            font-size: 28px;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+        }
+
+        .admin-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .admin-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .admin-input-group {
+            margin-bottom: 12px;
+        }
+
+        .admin-input-field {
+            width: 100%;
+            padding: 12px 16px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 13px;
+            color: #1f2937;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .admin-input-field:focus {
+            border-color: #6366f1;
+            background: #ffffff;
+        }
+
+        .admin-submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .admin-cancel-btn {
+            width: 100%;
+            padding: 12px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        /* Hacker / Termux Modal Styling */
+        .termux-panel {
+            background: #0d1117;
+            border-top: 1px solid #00ff88;
+            box-shadow: 0 -10px 30px rgba(0, 255, 136, 0.25);
+            color: #fff;
+            padding: 20px;
+        }
+
         .termux-full-banner {
             width: 100%;
             display: flex;
@@ -311,30 +547,19 @@
         .full-banner-img {
             width: 100%;
             height: auto;
-            max-height: 220px;
+            max-height: 200px;
             border-radius: 16px;
             object-fit: cover;
             border: 2px solid #00ff88;
-            animation: rainbowGlow 3s infinite linear;
             margin-bottom: 10px;
         }
 
         .fancy-title {
             font-family: monospace;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             text-align: center;
-            background: linear-gradient(90deg, #ff0055, #00ff88, #00e5ff, #9d00ff);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            color: #00ff88;
         }
 
         .noti-header {
@@ -346,25 +571,6 @@
             padding-bottom: 10px;
         }
 
-        .termux-header {
-            border-bottom-color: #00ff88;
-        }
-
-        .noti-header h3 {
-            font-size: 18px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .hacker-title {
-            color: #00ff88 !important;
-            font-family: monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .close-btn {
             background: none;
             border: none;
@@ -373,23 +579,20 @@
             cursor: pointer;
         }
 
-        /* Command Box Item */
         .command-card {
             background: #161b22;
             border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 12px;
+            padding: 10px;
+            margin-bottom: 10px;
             border: 1px solid #30363d;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .command-card label {
-            font-size: 11px;
+            font-size: 10px;
             color: #00ff88;
             font-family: monospace;
             display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
+            margin-bottom: 4px;
         }
 
         .command-box {
@@ -397,81 +600,70 @@
             align-items: center;
             justify-content: space-between;
             background: #090d13;
-            border: 1px solid #1f2937;
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
             gap: 10px;
         }
 
         .command-text {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
+            font-family: monospace;
+            font-size: 11px;
             color: #e6edf3;
-            word-break: break-all;
         }
 
         .copy-btn {
             background: #238636;
             color: #ffffff;
             border: none;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            transition: background 0.2s;
             flex-shrink: 0;
         }
 
-        .copy-btn:active {
-            transform: scale(0.95);
+        /* Notification Card Standard Modal */
+        .noti-panel-dark {
+            background: #161828;
+            padding: 20px;
+            color: #fff;
         }
 
-        /* Notification Card Standard */
         .noti-card {
             background: #1c1f36;
             border-radius: 16px;
             padding: 12px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             border: 1px solid #292d4d;
         }
 
         .noti-thumb {
             width: 100%;
-            height: 160px;
+            height: 150px;
             border-radius: 12px;
             object-fit: cover;
-            margin-bottom: 10px;
-            border: 1px solid #32375c;
+            margin-bottom: 8px;
         }
 
         .noti-info h4 {
-            font-size: 14px;
+            font-size: 13px;
             color: #fff;
             margin-bottom: 6px;
         }
 
         .download-file-btn {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             background: linear-gradient(90deg, #7000ff 0%, #9e00ff 100%);
             color: #fff;
-            border-radius: 10px;
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            margin-top: 8px;
-            box-shadow: 0 4px 12px rgba(112, 0, 255, 0.4);
-        }
-
-        .download-file-btn:active {
-            transform: scale(0.97);
         }
 
         /* Bottom Navigation */
@@ -480,13 +672,12 @@
             bottom: 0;
             width: 100%;
             max-width: 480px;
-            height: 70px;
+            height: 65px;
             background: var(--nav-bg);
             display: flex;
             justify-content: space-around;
             align-items: center;
             border-top: 1px solid var(--border-color);
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
             z-index: 100;
         }
 
@@ -494,32 +685,28 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             color: var(--text-sub);
             text-decoration: none;
-            font-size: 11px;
-            padding: 8px 16px;
-            border-radius: 14px;
+            font-size: 10px;
+            padding: 6px 14px;
+            border-radius: 12px;
         }
 
-        .nav-item i {
-            font-size: 20px;
-        }
+        .nav-item i { font-size: 18px; }
 
         .nav-item.active {
             color: var(--text-main);
             background: rgba(112, 0, 255, 0.2);
         }
 
-        .nav-item.active i {
-            color: #8a2be2;
-        }
+        .nav-item.active i { color: #8a2be2; }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- Header -->
+        <!-- Top Header Fixed -->
         <div class="top-bar">
             <div class="user-profile">
                 <div class="logo-glow" onclick="toggleTermuxModal()" title="Click to open Hacker Termux Commands">
@@ -535,6 +722,7 @@
                 <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Light/Dark Mode">
                     <i class="fa-solid fa-moon"></i>
                 </button>
+                <!-- Notification Bell -->
                 <button class="icon-btn" onclick="toggleNotifications()">
                     <i class="fa-solid fa-bell"></i>
                     <span class="badge" id="notiBadge">4</span>
@@ -542,9 +730,14 @@
             </div>
         </div>
 
-        <!-- Title -->
-        <div class="section-title">
-            <i class="fa-solid fa-mobile-screen"></i> All Apps
+        <!-- Section Header with Setting Button -->
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-mobile-screen"></i> All Apps
+            </div>
+            <button class="setting-sub-btn" onclick="toggleSettingsModal()">
+                <i class="fa-solid fa-gear"></i> Settings
+            </button>
         </div>
 
         <!-- App Grid -->
@@ -582,18 +775,119 @@
 
         </div>
 
+        <!-- Settings Modal (With custom background image) -->
+        <div class="notification-overlay" id="settingsOverlay">
+            <div class="notification-panel">
+                
+                <!-- Popup Banner with Image Background -->
+                <div class="popup-banner">
+                    <button class="popup-close-btn" onclick="toggleSettingsModal()"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="banner-icon-wrapper">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="banner-title">RAJAB-KING YT</div>
+                    <div class="banner-subtitle">Premium Apps & Tools Store</div>
+                </div>
+
+                <!-- Link Cards Container -->
+                <div class="modal-links-container">
+                    
+                    <!-- YouTube Box -->
+                    <a href="https://youtube.com/@rajabkingyt?si=YFtr2X4ypauA8GVv" target="_blank" class="image-style-card">
+                        <div class="card-left-content">
+                            <div class="card-icon-box yt-bg">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <div class="card-text-box">
+                                <h4>YouTube Channel</h4>
+                                <p>Subscribe for tutorials</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right card-arrow"></i>
+                    </a>
+
+                    <!-- WhatsApp Channel Box -->
+                    <a href="https://whatsapp.com/channel/0029VbDbigr6xCSJI615wT2P" target="_blank" class="image-style-card">
+                        <div class="card-left-content">
+                            <div class="card-icon-box wa-bg">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div class="card-text-box">
+                                <h4>WhatsApp Channel</h4>
+                                <p>Join our community</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right card-arrow"></i>
+                    </a>
+
+                    <!-- WhatsApp Direct Contact Box -->
+                    <a href="https://wa.me/923137059269" target="_blank" class="image-style-card">
+                        <div class="card-left-content">
+                            <div class="card-icon-box wa-bg">
+                                <i class="fa-solid fa-comment-dots"></i>
+                            </div>
+                            <div class="card-text-box">
+                                <h4>Contact Owner</h4>
+                                <p>Chat directly on WhatsApp</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right card-arrow"></i>
+                    </a>
+
+                    <!-- Admin Panel Button Box -->
+                    <div class="image-style-card" onclick="openAdminModal()">
+                        <div class="card-left-content">
+                            <div class="card-icon-box admin-bg">
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+                            <div class="card-text-box">
+                                <h4>Admin Panel</h4>
+                                <p>Manage your apps</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right card-arrow"></i>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Separate Admin Login Modal (Matching Image 2) -->
+        <div class="notification-overlay" id="adminOverlay" style="align-items: center;">
+            <div class="admin-modal-panel">
+                <div class="admin-icon-circle">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="admin-title">Admin Login</div>
+                <div class="admin-subtitle">Enter your credentials to continue</div>
+                
+                <form onsubmit="handleAdminLogin(event)">
+                    <div class="admin-input-group">
+                        <input type="email" class="admin-input-field" placeholder="Email" required>
+                    </div>
+                    <div class="admin-input-group">
+                        <input type="password" class="admin-input-field" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="admin-submit-btn">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </button>
+                    <button type="button" class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+                </form>
+            </div>
+        </div>
+
         <!-- Termux Commands Hacker Modal -->
         <div class="notification-overlay" id="termuxOverlay">
             <div class="notification-panel termux-panel">
-                <div class="noti-header termux-header">
-                    <h3 class="hacker-title">☠️ HACKER TERMUX COMMAND ☠️</h3>
+                <div class="noti-header">
+                    <h3 style="color: #00ff88; font-family: monospace;">☠️ HACKER TERMUX COMMAND ☠️</h3>
                     <button class="close-btn" onclick="toggleTermuxModal()"><i class="fa-solid fa-xmark"></i></button>
                 </div>
 
-                <!-- FULL BANNER IMAGE WITH MULTI-COLOR GLOW -->
                 <div class="termux-full-banner">
                     <img src="https://i.postimg.cc/pTszWnKZ/1789971985456.png" class="full-banner-img" alt="Rajab King Full DP">
-                    <div class="fancy-title">★ RAJAB-KING YT HACKER PANEL★</div>
+                    <div class="fancy-title">★ RAJAB-KING YT HACKER PANEL ★</div>
                 </div>
 
                 <!-- COMMAND 1 -->
@@ -601,9 +895,7 @@
                     <label>STEP 01: SYSTEM UPDATE</label>
                     <div class="command-box">
                         <span class="command-text" id="cmd1">pkg update && pkg upgrade -y</span>
-                        <button class="copy-btn" onclick="copyCommand('cmd1', this)">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
+                        <button class="copy-btn" onclick="copyCommand('cmd1', this)">Copy</button>
                     </div>
                 </div>
 
@@ -612,9 +904,7 @@
                     <label>STEP 02: INSTALL DEPENDENCIES</label>
                     <div class="command-box">
                         <span class="command-text" id="cmd2">pkg install git python python -y</span>
-                        <button class="copy-btn" onclick="copyCommand('cmd2', this)">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
+                        <button class="copy-btn" onclick="copyCommand('cmd2', this)">Copy</button>
                     </div>
                 </div>
 
@@ -623,9 +913,7 @@
                     <label>STEP 03: CLONE REPOSITORY</label>
                     <div class="command-box">
                         <span class="command-text" id="cmd3">git clone https://github.com/spyboy-productions/r4ven.git</span>
-                        <button class="copy-btn" onclick="copyCommand('cmd3', this)">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
+                        <button class="copy-btn" onclick="copyCommand('cmd3', this)">Copy</button>
                     </div>
                 </div>
 
@@ -634,9 +922,7 @@
                     <label>STEP 04: INSTALL REQUIREMENTS</label>
                     <div class="command-box">
                         <span class="command-text" id="cmd4">pip3 install -r requirements.txt</span>
-                        <button class="copy-btn" onclick="copyCommand('cmd4', this)">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
+                        <button class="copy-btn" onclick="copyCommand('cmd4', this)">Copy</button>
                     </div>
                 </div>
 
@@ -645,9 +931,7 @@
                     <label>STEP 05: RUN SCRIPT</label>
                     <div class="command-box">
                         <span class="command-text" id="cmd5">python3 r4ven.py</span>
-                        <button class="copy-btn" onclick="copyCommand('cmd5', this)">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
+                        <button class="copy-btn" onclick="copyCommand('cmd5', this)">Copy</button>
                     </div>
                 </div>
 
@@ -656,13 +940,12 @@
 
         <!-- Notification Panel / Bell Modal -->
         <div class="notification-overlay" id="notificationOverlay">
-            <div class="notification-panel">
+            <div class="notification-panel noti-panel-dark">
                 <div class="noti-header">
                     <h3><i class="fa-solid fa-bell" style="color: #8a2be2;"></i> Latest Updates</h3>
                     <button class="close-btn" onclick="toggleNotifications()"><i class="fa-solid fa-xmark"></i></button>
                 </div>
 
-                <!-- NEWLY ADDED ITEM: SIM DATA ZIP -->
                 <div class="noti-card">
                     <img src="https://i.postimg.cc/3x5yv1LW/upscalemedia-transformed.png" class="noti-thumb" alt="SIM Data Thumbnail">
                     <div class="noti-info">
@@ -673,35 +956,12 @@
                     </div>
                 </div>
 
-                <!-- ITEM 1 -->
                 <div class="noti-card">
                     <img src="https://i.postimg.cc/cLN42bw3/1789872362831.png" class="noti-thumb" alt="Thumbnail 1">
                     <div class="noti-info">
                         <h4>Index HTML Source File</h4>
                         <a href="https://www.mediafire.com/file/wsdurfaerwe32v9/index.html/file" target="_blank" class="download-file-btn">
                             <i class="fa-solid fa-cloud-arrow-down"></i> Download Index File
-                        </a>
-                    </div>
-                </div>
-
-                <!-- ITEM 2 -->
-                <div class="noti-card">
-                    <img src="https://i.postimg.cc/pXS1Lwqx/1789824152845.png" class="noti-thumb" alt="Thumbnail 2">
-                    <div class="noti-info">
-                        <h4>Sketchware Pro v7.0.0 APK</h4>
-                        <a href="https://www.mediafire.com/file/c1j5xy6j860699j/Sketchware+Pro_v7.0.0-SNAPSHOT-f28d22f-minApi26.apk/file" target="_blank" class="download-file-btn">
-                            <i class="fa-solid fa-cloud-arrow-down"></i> Download APK File
-                        </a>
-                    </div>
-                </div>
-
-                <!-- ITEM 3 -->
-                <div class="noti-card">
-                    <img src="https://i.postimg.cc/W3MPG2Yf/1789706074896.png" class="noti-thumb" alt="Thumbnail 3">
-                    <div class="noti-info">
-                        <h4>Latest Project Update</h4>
-                        <a href="https://i.postimg.cc/W3MPG2Yf/1789706074896.png" target="_blank" class="download-file-btn">
-                            <i class="fa-solid fa-eye"></i> View Full Image
                         </a>
                     </div>
                 </div>
@@ -755,6 +1015,30 @@
             }
         }
 
+        function toggleSettingsModal() {
+            const overlay = document.getElementById('settingsOverlay');
+            if (overlay.style.display === 'flex') {
+                overlay.style.display = 'none';
+            } else {
+                overlay.style.display = 'flex';
+            }
+        }
+
+        function openAdminModal() {
+            document.getElementById('settingsOverlay').style.display = 'none';
+            document.getElementById('adminOverlay').style.display = 'flex';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminOverlay').style.display = 'none';
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            alert("Admin Login Successful!");
+            closeAdminModal();
+        }
+
         function toggleTermuxModal() {
             const overlay = document.getElementById('termuxOverlay');
             if (overlay.style.display === 'flex') {
@@ -764,7 +1048,6 @@
             }
         }
 
-        /* Light / Dark Mode Toggle Function */
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
             const themeBtn = document.getElementById('themeBtn');
@@ -779,7 +1062,7 @@
             const commandText = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(commandText).then(() => {
                 const originalHTML = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+                btn.innerHTML = 'Copied';
                 btn.style.background = '#00ff88';
                 btn.style.color = '#000000';
                 
@@ -792,5 +1075,5 @@
         }
     </script>
 </body>
-  </html>
-                      
+    </html>
+    
